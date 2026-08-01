@@ -1,0 +1,187 @@
+/* Tabla */
+
+table {
+
+  width:100%;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+}
+
+
+.mat-mdc-header-row {
+
+  background:#1976d2;
+
+}
+
+
+.mat-mdc-header-cell {
+
+  color:white!important;
+
+  font-weight:600;
+
+  padding:16px;
+
+}
+
+
+.mat-mdc-cell {
+
+  padding:16px;
+
+}
+
+
+.mat-mdc-row:hover {
+
+  background:#f4f8ff;
+
+}
+
+
+/* Encabezado */
+
+.header-productos {
+
+  width:100%;
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+}
+
+
+.contador {
+
+  background:#1976d2;
+
+  color:white;
+
+  padding:6px 12px;
+
+  border-radius:20px;
+
+}
+
+
+/* Buscador */
+
+.tabla-toolbar {
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  margin-bottom:15px;
+
+}
+
+
+/* Botón nuevo */
+
+.acciones-productos {
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  margin:20px 0;
+
+}
+
+
+/* Stock */
+
+.cantidad {
+
+  display:inline-block;
+
+  min-width:35px;
+
+  padding:5px 10px;
+
+  border-radius:15px;
+
+  text-align:center;
+
+  font-weight:600;
+
+  background:#e3f2fd;
+
+  color:#1565c0;
+
+}
+
+
+.estado-stock {
+
+  padding:6px 12px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  font-weight:600;
+
+}
+
+
+.stock-disponible {
+
+  background:#dff6e5;
+
+  color:#2e7d32;
+
+}
+
+
+.stock-reordenar {
+
+  background:#fff3cd;
+
+  color:#b26a00;
+
+}
+
+
+.stock-agotado {
+
+  background:#fde7e9;
+
+  color:#c62828;
+
+}
+
+
+.estado {
+
+  padding:6px 12px;
+
+  border-radius:20px;
+
+}
+
+
+.activo {
+
+  background:#dff6e5;
+
+  color:#2e7d32;
+
+}
+
+
+.inactivo {
+
+  background:#fde7e9;
+
+  color:#c62828;
+
+}

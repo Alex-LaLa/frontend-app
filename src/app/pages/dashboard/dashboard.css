@@ -1,0 +1,215 @@
+/* ==========================
+   Dashboard general
+   ========================== */
+
+.dashboard-container {
+  padding: 25px;
+  background: #f4f6f8;
+  min-height: calc(100vh - 64px);
+}
+
+
+/* ==========================
+   Toolbar
+   ========================== */
+
+mat-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+
+/* ==========================
+   Tarjetas
+   ========================== */
+
+mat-card {
+  margin-bottom: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+
+mat-card-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+
+mat-card-subtitle {
+  color: #666;
+}
+
+
+/* ==========================
+   Tarjetas resumen
+   ========================== */
+
+.cards-dashboard {
+
+  display: grid;
+
+  grid-template-columns: repeat(4,1fr);
+
+  gap: 16px;
+
+  margin: 20px 25px 25px;
+
+}
+
+
+.card-resumen {
+
+  padding: 16px 20px;
+
+  height: 110px;
+
+}
+
+
+.card-resumen h3 {
+
+  margin:0 0 8px;
+
+  font-size:15px;
+
+  color:#666;
+
+}
+
+
+.card-resumen h1 {
+
+  margin:0;
+
+  font-size:28px;
+
+}
+
+
+/* ==========================
+   Bienvenida
+   ========================== */
+
+
+mat-card-content p {
+
+  font-size:16px;
+
+  line-height:1.6;
+
+  color:#444;
+
+}
+
+
+/* ==========================
+   IA
+   ========================== */
+
+
+mat-form-field {
+
+  margin-top:10px;
+
+}
+
+
+button {
+
+  border-radius:8px;
+
+}
+
+
+markdown {
+
+  display:block;
+
+  margin-top:15px;
+
+  padding:15px;
+
+  background:white;
+
+  border-radius:10px;
+
+}
+
+
+markdown p {
+
+  line-height:1.7;
+
+}
+
+
+/* ==========================
+   Gráfica
+   ========================== */
+
+
+.graficas-dashboard {
+
+  width:100%;
+
+  margin-bottom:24px;
+
+}
+
+
+.grafica-card {
+
+  width:100%;
+
+  padding:20px;
+
+}
+
+
+.grafica-container {
+
+  position:relative;
+
+  height:350px;
+
+}
+
+
+.grafica-container canvas {
+
+  width:100%!important;
+
+  height:100%!important;
+
+}
+
+
+
+/* ==========================
+   Responsive
+   ========================== */
+
+
+@media(max-width:900px){
+
+  .cards-dashboard{
+
+    grid-template-columns:repeat(2,1fr);
+
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  .cards-dashboard{
+
+    grid-template-columns:1fr;
+
+  }
+
+}

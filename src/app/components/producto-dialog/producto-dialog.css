@@ -1,0 +1,23 @@
+mat-form-field{
+
+    width:100%;
+
+    margin-bottom:15px;
+
+}
+
+mat-dialog-content{
+
+    min-width:420px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+mat-checkbox{
+
+    margin-top:10px;
+
+}
