@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://frontend-pr4v1ybqp-aelx.vercel.app//api/auth';
+  private apiUrl = 'https://frontend-pr4v1ybqp-aelx.vercel.app/api/auth';
 
   constructor(private http: HttpClient) {}
 
