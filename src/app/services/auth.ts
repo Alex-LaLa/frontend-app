@@ -3,56 +3,41 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private apiUrl = 'http://localhost:8080/api/auth';
+  private apiUrl = 'https://frontend-pr4v1ybqp-aelx.vercel.app//api/auth';
 
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
-
-    return this.http.post<any>(
-      `${this.apiUrl}/login`,
-      {
-        email,
-        password
-      }
-    );
-
+    return this.http.post<any>(`${this.apiUrl}/login`, {
+      email,
+      password,
+    });
   }
 
-    guardarToken(token: string): void {
-
+  guardarToken(token: string): void {
     if (typeof window !== 'undefined') {
-        localStorage.setItem('token', token);
+      localStorage.setItem('token', token);
     }
+  }
 
-    }
-
-    obtenerToken(): string | null {
-
+  obtenerToken(): string | null {
     if (typeof window === 'undefined') {
-        return null;
+      return null;
     }
 
     return localStorage.getItem('token');
-
-    }
-
-    logout(): void {
-
-    if (typeof window !== 'undefined') {
-        localStorage.removeItem('token');
-    }
-
-    }
-
-  estaAutenticado(): boolean {
-
-    return this.obtenerToken() !== null;
-
   }
 
+  logout(): void {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+    }
+  }
+
+  estaAutenticado(): boolean {
+    return this.obtenerToken() !== null;
+  }
 }
