@@ -6,7 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-
+import { ChangeDetectorRef } from '@angular/core';
 import { CategoriaService } from '../../services/categoria';
 import { CategoriaDialog } from '../categoria-dialog/categoria-dialog';
 
@@ -32,6 +32,7 @@ export class CategoriasComponent implements OnInit {
   constructor(
     private categoriaService: CategoriaService,
     private dialog: MatDialog,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +42,7 @@ export class CategoriasComponent implements OnInit {
   cargarCategorias(): void {
     this.categoriaService.obtenerCategorias().subscribe((data) => {
       this.categorias = data;
+      this.cdr.detectChanges();
     });
   }
 
