@@ -3,18 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoriaService {
 
-  private api = 'http://localhost:8080/api/categorias';
+  private api = `${environment.apiUrl}/api/categorias`;
 
   constructor(private http: HttpClient) {}
 
   obtenerCategorias(): Observable<any[]> {
-
     return this.http.get<any[]>(this.api);
-
   }
-
 }

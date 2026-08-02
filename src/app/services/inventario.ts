@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class InventarioService {
-  private api = 'http://localhost:8080/api/inventario';
+
+  private api = `${environment.apiUrl}/api/inventario`;
 
   constructor(private http: HttpClient) {}
 
