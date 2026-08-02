@@ -1,36 +1,71 @@
-/* ==========================
-   Tarjeta principal
-   ========================== */
+/* ========================== */
+/* Tarjeta estilo cristal */
+/* ========================== */
 
 mat-card {
 
-  margin: 20px;
+  margin:20px;
 
-  border-radius: 14px;
+  border-radius:18px;
 
-  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+  background:rgba(255,255,255,.75);
+
+  backdrop-filter:blur(12px);
+
+  -webkit-backdrop-filter:blur(12px);
+
+  border:1px solid rgba(255,255,255,.6);
+
+  box-shadow:
+    0 8px 25px rgba(25,118,210,.12);
+
+  transition:.25s ease;
 
 }
 
-mat-card-title{
+
+mat-card:hover {
+
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 15px 35px rgba(25,118,210,.18);
+
+}
+
+
+
+/* ========================== */
+/* Títulos */
+/* ========================== */
+
+
+.titulo-categorias mat-card-title {
 
   font-size:22px;
 
-  font-weight:600;
+  font-weight:700;
 
 }
 
-mat-card-subtitle{
+
+
+mat-card-subtitle {
 
   color:#666;
 
 }
 
-/* ==========================
-   Barra superior
-   ========================== */
 
-.header-categorias{
+
+/* ========================== */
+/* Header categorías */
+/* ========================== */
+
+
+.header-categorias {
+
+  width:100%;
 
   display:flex;
 
@@ -38,78 +73,168 @@ mat-card-subtitle{
 
   align-items:center;
 
-  margin-bottom:20px;
+  padding:5px 0;
 
 }
 
-.header-categorias button{
 
-  border-radius:8px;
 
-}
+/* ========================== */
+/* Contador + botón */
+/* ========================== */
 
-/* ==========================
-   Tabla
-   ========================== */
 
-table{
+.acciones-header {
 
-  width:100%;
+  display:flex;
 
-  margin-top:20px;
+  align-items:center;
 
-  border-radius:12px;
-
-  overflow:hidden;
+  gap:24px;
 
 }
 
-.mat-mdc-header-row{
+
+
+/* Contador */
+
+
+.contador {
 
   background:#1976d2;
 
-}
+  color:white;
 
-.mat-mdc-header-cell{
+  padding:8px 18px;
 
-  color:white !important;
+  border-radius:20px;
 
   font-weight:600;
 
   font-size:14px;
 
-}
+  white-space:nowrap;
 
-.mat-mdc-cell,
-.mat-mdc-header-cell{
-
-  padding:16px;
+  box-shadow:
+    0 4px 10px rgba(25,118,210,.25);
 
 }
 
-.mat-mdc-row:hover{
 
-  background:#f4f8ff;
 
-  transition:.2s;
+/* Botón nueva categoría */
+
+
+.acciones-header button {
+
+  border-radius:20px;
+
+  height:42px;
+
+  padding:0 20px;
 
 }
 
-/* ==========================
-   Botones
-   ========================== */
 
-button[mat-icon-button]{
+
+.acciones-header mat-icon {
 
   margin-right:6px;
 
 }
 
-/* ==========================
-   Estado
-   ========================== */
 
-.estado{
+
+/* ========================== */
+/* Tabla */
+/* ========================== */
+
+
+table {
+
+  width:100%;
+
+  margin-top:20px;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  background:rgba(255,255,255,.45);
+
+}
+
+
+
+.mat-mdc-header-row {
+
+  background:#1976d2;
+
+}
+
+
+
+.mat-mdc-header-cell {
+
+  color:white!important;
+
+  font-weight:600;
+
+  font-size:14px;
+
+  padding:16px;
+
+}
+
+
+
+.mat-mdc-cell {
+
+  padding:16px;
+
+  color:#374151;
+
+}
+
+
+
+.mat-mdc-row {
+
+  transition:.2s ease;
+
+}
+
+
+
+.mat-mdc-row:hover {
+
+  background:#edf5ff;
+
+  transform:scale(1.005);
+
+}
+
+
+
+/* ========================== */
+/* Botones tabla */
+/* ========================== */
+
+
+button[mat-icon-button] {
+
+  margin-right:6px;
+
+}
+
+
+
+/* ========================== */
+/* Estado */
+/* ========================== */
+
+
+.estado {
 
   padding:6px 12px;
 
@@ -121,7 +246,9 @@ button[mat-icon-button]{
 
 }
 
-.activo{
+
+
+.activo {
 
   background:#dff6e5;
 
@@ -129,7 +256,9 @@ button[mat-icon-button]{
 
 }
 
-.inactivo{
+
+
+.inactivo {
 
   background:#fde7e9;
 
@@ -137,13 +266,36 @@ button[mat-icon-button]{
 
 }
 
-/* ==========================
-   Responsive
-   ========================== */
 
-@media(max-width:768px){
 
-  table{
+/* ========================== */
+/* Responsive */
+/* ========================== */
+
+
+@media(max-width:768px) {
+
+  .header-categorias {
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:15px;
+
+  }
+
+
+  .acciones-header {
+
+    width:100%;
+
+    justify-content:flex-end;
+
+  }
+
+
+  table {
 
     display:block;
 

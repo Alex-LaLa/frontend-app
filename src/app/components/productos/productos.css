@@ -1,14 +1,57 @@
+/* ========================== */
+/* Tarjeta estilo cristal */
+/* ========================== */
+
+mat-card {
+
+  margin:20px;
+
+  border-radius:18px;
+
+  background:rgba(255,255,255,.75);
+
+  backdrop-filter:blur(12px);
+
+  -webkit-backdrop-filter:blur(12px);
+
+  border:1px solid rgba(255,255,255,.6);
+
+  box-shadow:
+    0 8px 25px rgba(25,118,210,.12);
+
+  transition:.25s ease;
+
+}
+
+
+mat-card:hover {
+
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 15px 35px rgba(25,118,210,.18);
+
+}
+
+
+
+/* ========================== */
 /* Tabla */
+/* ========================== */
+
 
 table {
 
   width:100%;
 
-  border-radius:12px;
+  border-radius:14px;
 
   overflow:hidden;
 
+  background:rgba(255,255,255,.45);
+
 }
+
 
 
 .mat-mdc-header-row {
@@ -16,6 +59,7 @@ table {
   background:#1976d2;
 
 }
+
 
 
 .mat-mdc-header-cell {
@@ -29,6 +73,7 @@ table {
 }
 
 
+
 .mat-mdc-cell {
 
   padding:16px;
@@ -36,14 +81,29 @@ table {
 }
 
 
-.mat-mdc-row:hover {
 
-  background:#f4f8ff;
+.mat-mdc-row {
+
+  transition:.2s ease;
 
 }
 
 
-/* Encabezado */
+
+.mat-mdc-row:hover {
+
+  background:#edf5ff;
+
+  transform:scale(1.005);
+
+}
+
+
+
+/* ========================== */
+/* Header productos */
+/* ========================== */
+
 
 .header-productos {
 
@@ -58,46 +118,111 @@ table {
 }
 
 
+
+.titulo-productos mat-card-title {
+
+  font-size:22px;
+
+  font-weight:700;
+
+}
+
+
+
+/* ========================== */
+/* Contador + acciones */
+/* ========================== */
+
+
+.acciones-header {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:20px;
+
+  margin-left:20px;
+
+}
+
+
+
 .contador {
 
   background:#1976d2;
 
   color:white;
 
-  padding:6px 12px;
+  padding:8px 18px;
 
   border-radius:20px;
+
+  font-weight:600;
+
+  font-size:14px;
+
+  white-space:nowrap;
+
+  box-shadow:
+    0 4px 10px rgba(25,118,210,.25);
 
 }
 
 
+
+/* Botón nuevo */
+
+
+.acciones-header button {
+
+  border-radius:20px;
+
+  height:42px;
+
+  padding:0 20px;
+
+}
+
+
+
+.acciones-header mat-icon {
+
+  margin-right:5px;
+
+}
+
+
+
+/* ========================== */
 /* Buscador */
+/* ========================== */
+
 
 .tabla-toolbar {
 
   display:flex;
 
-  justify-content:flex-end;
+  justify-content:flex-start;
 
-  margin-bottom:15px;
-
-}
-
-
-/* Botón nuevo */
-
-.acciones-productos {
-
-  display:flex;
-
-  justify-content:flex-end;
-
-  margin:20px 0;
+  margin-top:10px;
 
 }
 
 
+
+.tabla-toolbar mat-form-field {
+
+  width:350px;
+
+}
+
+
+
+/* ========================== */
 /* Stock */
+/* ========================== */
+
 
 .cantidad {
 
@@ -120,6 +245,7 @@ table {
 }
 
 
+
 .estado-stock {
 
   padding:6px 12px;
@@ -133,6 +259,7 @@ table {
 }
 
 
+
 .stock-disponible {
 
   background:#dff6e5;
@@ -140,6 +267,7 @@ table {
   color:#2e7d32;
 
 }
+
 
 
 .stock-reordenar {
@@ -151,6 +279,7 @@ table {
 }
 
 
+
 .stock-agotado {
 
   background:#fde7e9;
@@ -158,6 +287,12 @@ table {
   color:#c62828;
 
 }
+
+
+
+/* ========================== */
+/* Estado producto */
+/* ========================== */
 
 
 .estado {
@@ -169,6 +304,7 @@ table {
 }
 
 
+
 .activo {
 
   background:#dff6e5;
@@ -178,10 +314,19 @@ table {
 }
 
 
+
 .inactivo {
 
   background:#fde7e9;
 
   color:#c62828;
 
+}
+
+.mat-mdc-header-cell {
+  font-weight:600;
+}
+
+.mat-mdc-cell {
+  color:#374151;
 }

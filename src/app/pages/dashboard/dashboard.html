@@ -6,63 +6,11 @@
   <button mat-raised-button color="accent" (click)="logout()">Cerrar Sesión</button>
 </mat-toolbar>
 
-<!-- ========================= -->
-<!-- TARJETAS DE RESUMEN -->
-<!-- ========================= -->
-
-<div class="cards-dashboard">
-  <mat-card class="card-resumen">
-    <h3>Productos</h3>
-
-    <h1>{{ totalProductos }}</h1>
-  </mat-card>
-
-  <mat-card class="card-resumen">
-    <h3>Categorías</h3>
-
-    <h1>{{ totalCategorias }}</h1>
-  </mat-card>
-
-  <mat-card class="card-resumen">
-    <h3>Activos</h3>
-
-    <h1>{{ productosActivos }}</h1>
-  </mat-card>
-
-  <mat-card class="card-resumen">
-    <h3>Valor Inventario</h3>
-
-    <h1>{{ valorInventario | currency: 'MXN' }}</h1>
-  </mat-card>
-</div>
-
-<!-- ========================= -->
-<!-- GRÁFICA -->
-<!-- ========================= -->
-
-<div class="graficas-dashboard">
-  <mat-card class="grafica-card">
-    <mat-card-header>
-      <mat-card-title> Productos por categoría </mat-card-title>
-
-      <mat-card-subtitle>
-        Distribución de productos registrados en el inventario
-      </mat-card-subtitle>
-    </mat-card-header>
-
-    <mat-card-content>
-      <div class="grafica-container">
-        <canvas baseChart [data]="barChartData" [options]="barChartOptions" type="bar"> </canvas>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<!-- ========================= -->
-<!-- CONTENIDO DEL DASHBOARD -->
-<!-- ========================= -->
-
+  <!-- ========================= -->
+  <!-- CONTENIDO DEL DASHBOARD -->
+  <!-- ========================= -->
 <div class="dashboard-container">
+
   <!-- Bienvenida -->
 
   <mat-card>
@@ -81,7 +29,6 @@
       </p>
     </mat-card-content>
   </mat-card>
-
   <!-- ========================= -->
   <!-- ASISTENTE IA -->
   <!-- ========================= -->
@@ -136,6 +83,57 @@
       }
     </mat-card-content>
   </mat-card>
+<!-- ========================= -->
+<!-- TARJETAS DE RESUMEN -->
+<!-- ========================= -->
+
+<div class="cards-dashboard">
+  <mat-card class="card-resumen">
+    <h3>Productos</h3>
+
+    <h1>{{ totalProductos }}</h1>
+  </mat-card>
+
+  <mat-card class="card-resumen">
+    <h3>Categorías</h3>
+
+    <h1>{{ totalCategorias }}</h1>
+  </mat-card>
+
+  <mat-card class="card-resumen">
+    <h3>Activos</h3>
+
+    <h1>{{ productosActivos }}</h1>
+  </mat-card>
+
+  <mat-card class="card-resumen">
+    <h3>Valor Inventario</h3>
+
+    <h1>{{ valorInventario | currency: 'MXN' }}</h1>
+  </mat-card>
+</div>
+
+<!-- ========================= -->
+<!-- GRÁFICA -->
+<!-- ========================= -->
+
+<div class="graficas-dashboard">
+  <mat-card class="grafica-card">
+    <mat-card-header>
+      <mat-card-title> Productos por categoría </mat-card-title>
+
+      <mat-card-subtitle>
+        Distribución de productos registrados en el inventario
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="grafica-container">
+        <canvas baseChart [data]="barChartData" [options]="barChartOptions" type="bar"> </canvas>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
 
   <app-productos
     (resumenActualizado)="actualizarResumen($event)">

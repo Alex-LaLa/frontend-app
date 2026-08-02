@@ -5,19 +5,25 @@
 <mat-card>
   <mat-card-header>
     <div class="header-productos">
-      <div>
+      <div class="titulo-productos">
         <mat-card-title> Productos registrados </mat-card-title>
 
         <mat-card-subtitle> Sistema de Inventario </mat-card-subtitle>
       </div>
 
-      <span class="contador"> {{ productos.length }} productos </span>
+      <div class="acciones-header">
+        <span class="contador"> {{ productos.length }} productos </span>
+
+        <button mat-raised-button color="primary" (click)="abrirDialogoProducto()">
+          <mat-icon> add </mat-icon>
+
+          Nuevo Producto
+        </button>
+      </div>
     </div>
   </mat-card-header>
 
   <mat-card-content>
-    <!-- Buscador -->
-
     <div class="tabla-toolbar">
       <mat-form-field appearance="outline">
         <mat-label> Buscar producto </mat-label>
@@ -26,14 +32,6 @@
 
         <mat-icon matSuffix> search </mat-icon>
       </mat-form-field>
-    </div>
-
-    <!-- Nuevo producto -->
-
-    <div class="acciones-productos">
-      <button mat-raised-button color="primary" (click)="abrirDialogoProducto()">
-        + Nuevo Producto
-      </button>
     </div>
 
     <!-- Tabla -->
@@ -81,39 +79,23 @@
 
       <!-- Cantidad / Stock -->
       <ng-container matColumnDef="cantidad">
-
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>
-          Stock
-        </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
 
         <td mat-cell *matCellDef="let producto">
-
-    <span class="cantidad">
-      {{ producto.cantidad }}
-    </span>
-
+          <span class="cantidad">
+            {{ producto.cantidad }}
+          </span>
         </td>
-
       </ng-container>
       <!-- Estado del stock -->
       <ng-container matColumnDef="estadoStock">
-
-        <th mat-header-cell *matHeaderCellDef>
-          Estado
-        </th>
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
 
         <td mat-cell *matCellDef="let producto">
-
-    <span
-      class="estado-stock"
-      [ngClass]="obtenerClaseStock(producto)">
-
-      {{ obtenerEstadoStock(producto) }}
-
-    </span>
-
+          <span class="estado-stock" [ngClass]="obtenerClaseStock(producto)">
+            {{ obtenerEstadoStock(producto) }}
+          </span>
         </td>
-
       </ng-container>
       <!-- Activo -->
 
@@ -121,13 +103,9 @@
         <th mat-header-cell *matHeaderCellDef>Activo</th>
 
         <td mat-cell *matCellDef="let producto">
-            <span
-              class="estado"
-              [class.activo]="producto.activo"
-              [class.inactivo]="!producto.activo"
-            >
-              {{ producto.activo ? 'Activo' : 'Inactivo' }}
-            </span>
+          <span class="estado" [class.activo]="producto.activo" [class.inactivo]="!producto.activo">
+            {{ producto.activo ? 'Activo' : 'Inactivo' }}
+          </span>
         </td>
       </ng-container>
 
@@ -137,15 +115,8 @@
         <th mat-header-cell *matHeaderCellDef>Acciones</th>
 
         <td mat-cell *matCellDef="let producto">
-          <button
-            mat-icon-button
-            color="primary"
-            (click)="abrirDialogoProducto(producto)">
-
-            <mat-icon>
-              edit
-            </mat-icon>
-
+          <button mat-icon-button color="primary" (click)="abrirDialogoProducto(producto)">
+            <mat-icon> edit </mat-icon>
           </button>
 
           <button mat-icon-button color="warn" (click)="eliminarProducto(producto)">
@@ -159,10 +130,7 @@
       <tr mat-row *matRowDef="let _; columns: columnas"></tr>
     </table>
 
-    <mat-paginator
-      [pageSize]="10"
-      [pageSizeOptions]="[5,10,20]"
-      [showFirstLastButtons]="true">
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
     </mat-paginator>
   </mat-card-content>
 </mat-card>

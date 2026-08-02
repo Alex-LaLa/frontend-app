@@ -109,6 +109,9 @@ export class ProductosComponent implements OnInit, AfterViewInit {
           return item[property];
       }
     };
+
+    this.sort.active = 'id';
+    this.sort.direction = 'asc';
   }
   cargarCategorias(): void {
     this.categoriaService.obtenerCategorias().subscribe((data) => {
@@ -132,8 +135,12 @@ export class ProductosComponent implements OnInit, AfterViewInit {
             nivelReorden: inventario?.nivelReorden ?? 0,
           };
         });
-
+        this.productos.sort((a, b) => a.id - b.id);
         this.dataSource.data = this.productos;
+        if (this.sort) {
+          this.sort.active = 'id';
+          this.sort.direction = 'asc';
+        }
         const totalProductos = this.productos.length;
         const totalCategorias = new Set(this.productos.map((p: any) => p.categoria?.nombre)).size;
         const productosActivos = this.productos.filter((p: any) => p.activo).length;
