@@ -1,0 +1,46 @@
+<h2 mat-dialog-title>
+
+  {{ categoria.id ? 'Editar Categoría' : 'Nueva Categoría' }}
+
+</h2>
+
+<mat-dialog-content>
+
+  <mat-form-field appearance="outline" style="width:100%;">
+
+    <mat-label>Nombre</mat-label>
+
+    <input
+      matInput
+      [(ngModel)]="categoria.nombre">
+
+  </mat-form-field>
+
+  <mat-checkbox [(ngModel)]="categoria.activo">
+
+    Categoría activa
+
+  </mat-checkbox>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+  <button
+    mat-button
+    (click)="cancelar()">
+
+    Cancelar
+
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="guardar()">
+
+    Guardar
+
+  </button>
+
+</mat-dialog-actions>
