@@ -1,0 +1,33 @@
+mat-dialog-content{
+
+  min-width:380px;
+
+  padding-top:15px;
+
+}
+
+mat-form-field{
+
+  width:100%;
+
+  margin-bottom:15px;
+
+}
+
+mat-checkbox{
+
+  margin-top:5px;
+
+}
+
+mat-dialog-actions{
+
+  padding-top:20px;
+
+}
+
+button{
+
+  min-width:110px;
+
+}

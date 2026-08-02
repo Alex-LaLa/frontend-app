@@ -1,0 +1,154 @@
+/* ==========================
+   Tarjeta principal
+   ========================== */
+
+mat-card {
+
+  margin: 20px;
+
+  border-radius: 14px;
+
+  box-shadow: 0 4px 15px rgba(0,0,0,.08);
+
+}
+
+mat-card-title{
+
+  font-size:22px;
+
+  font-weight:600;
+
+}
+
+mat-card-subtitle{
+
+  color:#666;
+
+}
+
+/* ==========================
+   Barra superior
+   ========================== */
+
+.header-categorias{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  margin-bottom:20px;
+
+}
+
+.header-categorias button{
+
+  border-radius:8px;
+
+}
+
+/* ==========================
+   Tabla
+   ========================== */
+
+table{
+
+  width:100%;
+
+  margin-top:20px;
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+}
+
+.mat-mdc-header-row{
+
+  background:#1976d2;
+
+}
+
+.mat-mdc-header-cell{
+
+  color:white !important;
+
+  font-weight:600;
+
+  font-size:14px;
+
+}
+
+.mat-mdc-cell,
+.mat-mdc-header-cell{
+
+  padding:16px;
+
+}
+
+.mat-mdc-row:hover{
+
+  background:#f4f8ff;
+
+  transition:.2s;
+
+}
+
+/* ==========================
+   Botones
+   ========================== */
+
+button[mat-icon-button]{
+
+  margin-right:6px;
+
+}
+
+/* ==========================
+   Estado
+   ========================== */
+
+.estado{
+
+  padding:6px 12px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  font-weight:600;
+
+}
+
+.activo{
+
+  background:#dff6e5;
+
+  color:#2e7d32;
+
+}
+
+.inactivo{
+
+  background:#fde7e9;
+
+  color:#c62828;
+
+}
+
+/* ==========================
+   Responsive
+   ========================== */
+
+@media(max-width:768px){
+
+  table{
+
+    display:block;
+
+    overflow-x:auto;
+
+  }
+
+}

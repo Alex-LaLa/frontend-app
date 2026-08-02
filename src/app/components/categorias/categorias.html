@@ -16,14 +16,26 @@
   <mat-card-content>
 
 
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="abrirDialogoCategoria()">
+    <div class="header-categorias">
 
-      + Nueva Categoría
+      <div>
 
-    </button>
+        <h2>Categorías</h2>
+
+        <p>Administración de categorías</p>
+
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="abrirDialogoCategoria()">
+
+        + Nueva Categoría
+
+      </button>
+
+    </div>
 
 
     <table mat-table [dataSource]="categorias">
