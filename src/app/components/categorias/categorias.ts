@@ -27,7 +27,7 @@ import { CategoriaDialog } from '../categoria-dialog/categoria-dialog';
 export class CategoriasComponent implements OnInit {
   categorias: any[] = [];
 
-  columnas: string[] = ['id', 'nombre', 'acciones'];
+  columnas: string[] = ['id', 'nombre', 'acciones','activo'];
 
   constructor(
     private categoriaService: CategoriaService,
@@ -65,6 +65,36 @@ export class CategoriasComponent implements OnInit {
       this.categoriaService.crearCategoria(resultado).subscribe(() => {
         this.cargarCategorias();
       });
+    });
+  }
+
+  editarCategoria(categoria: any): void {
+    const dialogRef = this.dialog.open(CategoriaDialog, {
+      width: '450px',
+
+      data: { ...categoria },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (!resultado) {
+        return;
+      }
+
+      this.categoriaService.actualizarCategoria(categoria.id, resultado).subscribe(() => {
+        this.cargarCategorias();
+      });
+    });
+  }
+
+  eliminarCategoria(categoria: any): void {
+    const confirmar = confirm(`¿Desea eliminar la categoría "${categoria.nombre}"?`);
+
+    if (!confirmar) {
+      return;
+    }
+
+    this.categoriaService.eliminarCategoria(categoria.id).subscribe(() => {
+      this.cargarCategorias();
     });
   }
 }

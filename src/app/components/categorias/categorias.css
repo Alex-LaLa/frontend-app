@@ -234,7 +234,7 @@ button[mat-icon-button] {
 /* ========================== */
 
 
-.estado {
+.estado{
 
   padding:6px 12px;
 
@@ -246,9 +246,7 @@ button[mat-icon-button] {
 
 }
 
-
-
-.activo {
+.activo{
 
   background:#dff6e5;
 
@@ -256,9 +254,7 @@ button[mat-icon-button] {
 
 }
 
-
-
-.inactivo {
+.inactivo{
 
   background:#fde7e9;
 

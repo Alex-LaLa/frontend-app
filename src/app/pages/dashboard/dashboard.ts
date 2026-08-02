@@ -17,6 +17,7 @@ import { AiService } from '../../services/ai';
 import { AuthService } from '../../services/auth';
 
 import { ProductosComponent } from '../../components/productos/productos';
+import { ClientesComponent } from '../../components/clientes/clientes';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,7 +34,8 @@ import { ProductosComponent } from '../../components/productos/productos';
     MarkdownComponent,
     CurrencyPipe,
     ProductosComponent,
-    CategoriasComponent
+    CategoriasComponent,
+    ClientesComponent,
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
