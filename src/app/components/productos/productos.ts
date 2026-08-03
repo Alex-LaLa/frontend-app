@@ -158,21 +158,17 @@ export class ProductosComponent implements OnInit, AfterViewInit {
             conteoCategorias[categoria] = (conteoCategorias[categoria] || 0) + 1;
           }
         });
-        const barChartData: ChartConfiguration<'bar'>['data'] = {
-          labels: Object.keys(conteoCategorias),
-          datasets: [
-            {
-              label: 'Productos',
-              data: Object.values(conteoCategorias) as number[],
-            },
-          ],
-        };
+        const categorias = Object.keys(conteoCategorias);
+
+        const cantidades = Object.values(conteoCategorias) as number[];
+
         this.resumenActualizado.emit({
           totalProductos,
           totalCategorias,
           productosActivos,
           valorInventario,
-          barChartData,
+          categorias,
+          cantidades,
         });
 
         this.cdr.detectChanges();

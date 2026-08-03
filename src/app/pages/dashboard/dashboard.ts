@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component} from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { DashboardResumen } from '../../models/dashboard-resumen';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration } from 'chart.js';
 import { MarkdownComponent } from 'ngx-markdown';
-
+import { DashboardService } from '../../services/dashboard';
 import { AiService } from '../../services/ai';
 import { AuthService } from '../../services/auth';
 import { MatIcon } from '@angular/material/icon';
@@ -36,7 +36,7 @@ import { MatIcon } from '@angular/material/icon';
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   pregunta = '';
   respuestaIA = '';
   cargando = false;
@@ -45,6 +45,45 @@ export class DashboardComponent {
   totalCategorias = 0;
   productosActivos = 0;
   valorInventario = 0;
+
+  constructor(
+    private router: Router,
+    private aiService: AiService,
+    private cdr: ChangeDetectorRef,
+    private authService: AuthService,
+    private dashboardService: DashboardService,
+  ) {}
+
+  ngOnInit(): void {
+    this.cargarResumen();
+  }
+
+  cargarResumen(): void {
+    this.dashboardService.obtenerResumen().subscribe({
+      next: (resumen: DashboardResumen) => {
+        this.totalProductos = resumen.totalProductos;
+        this.totalCategorias = resumen.totalCategorias;
+        this.productosActivos = resumen.productosActivos;
+        this.valorInventario = resumen.valorInventario;
+
+        this.barChartData = {
+          labels: resumen.categorias,
+          datasets: [
+            {
+              label: 'Productos',
+              data: resumen.cantidades,
+            }
+            ,
+
+          ],
+        };
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error al cargar el dashboard', err);
+      },
+    });
+  }
 
   public barChartData: ChartConfiguration<'bar'>['data'] = {
     labels: [],
@@ -74,13 +113,6 @@ export class DashboardComponent {
     },
   };
 
-  constructor(
-    private router: Router,
-    private aiService: AiService,
-    private cdr: ChangeDetectorRef,
-    private authService: AuthService,
-  ) {}
-
   enviarPregunta(): void {
     if (!this.pregunta.trim()) {
       return;
@@ -88,7 +120,6 @@ export class DashboardComponent {
 
     this.cargando = true;
     this.respuestaIA = '';
-
     this.aiService.consultar(this.pregunta).subscribe({
       next: (res) => {
         this.respuestaIA = res.respuesta;
@@ -101,18 +132,7 @@ export class DashboardComponent {
         this.cdr.detectChanges();
       },
     });
-  }
-
-  actualizarResumen(resumen: DashboardResumen): void {
-    this.totalProductos = resumen.totalProductos;
-
-    this.totalCategorias = resumen.totalCategorias;
-
-    this.productosActivos = resumen.productosActivos;
-
-    this.valorInventario = resumen.valorInventario;
-
-    this.barChartData = resumen.barChartData;
+    this.cdr.detectChanges();
   }
 
   logout(): void {
