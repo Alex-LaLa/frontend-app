@@ -1,143 +1,331 @@
 <mat-toolbar color="primary">
+
   <span>Sistema de Inventario para Pequeños Negocios (MVP)</span>
 
-  <span style="flex: 1 1 auto"></span>
+  <span style="flex:1 1 auto;"></span>
 
-  <button mat-raised-button color="accent" (click)="logout()">Cerrar Sesión</button>
+  <button
+    mat-raised-button
+    color="accent"
+    (click)="logout()">
+
+    Cerrar Sesión
+
+  </button>
+
 </mat-toolbar>
 
-  <!-- ========================= -->
-  <!-- CONTENIDO DEL DASHBOARD -->
-  <!-- ========================= -->
+
 <div class="dashboard-container">
 
-  <!-- Bienvenida -->
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title> Bienvenido </mat-card-title>
-
-      <mat-card-subtitle> Panel principal </mat-card-subtitle>
-    </mat-card-header>
-
-    <mat-card-content>
-      <p>Bienvenido al Sistema de Inventario para Pequeños Negocios (MVP).</p>
-
-      <p>
-        Desde este panel podrás administrar productos, inventario y consultar la información
-        principal del sistema.
-      </p>
-    </mat-card-content>
-  </mat-card>
   <!-- ========================= -->
-  <!-- ASISTENTE IA -->
+  <!-- BIENVENIDA -->
   <!-- ========================= -->
 
   <mat-card>
+
     <mat-card-header>
-      <mat-card-title> Asistente Inteligente </mat-card-title>
+
+      <mat-card-title>
+
+        Bienvenido
+
+      </mat-card-title>
 
       <mat-card-subtitle>
-        Consulta información del negocio utilizando Inteligencia Artificial
+
+        Panel principal
+
       </mat-card-subtitle>
+
     </mat-card-header>
 
     <mat-card-content>
-      <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label> Escribe una consulta </mat-label>
+
+      <p>
+
+        Bienvenido al Sistema de Inventario para Pequeños Negocios (MVP).
+
+      </p>
+
+      <p>
+
+        Desde este panel podrás administrar productos, categorías, clientes,
+        inventario y consultar información mediante IA.
+
+      </p>
+
+    </mat-card-content>
+
+  </mat-card>
+
+
+  <!-- ========================= -->
+  <!-- RESUMEN -->
+  <!-- ========================= -->
+
+  <div class="cards-dashboard">
+
+    <mat-card class="card-resumen">
+
+      <h3>Productos</h3>
+
+      <h1>{{ totalProductos }}</h1>
+
+    </mat-card>
+
+    <mat-card class="card-resumen">
+
+      <h3>Categorías</h3>
+
+      <h1>{{ totalCategorias }}</h1>
+
+    </mat-card>
+
+    <mat-card class="card-resumen">
+
+      <h3>Activos</h3>
+
+      <h1>{{ productosActivos }}</h1>
+
+    </mat-card>
+
+    <mat-card class="card-resumen">
+
+      <h3>Valor Inventario</h3>
+
+      <h1>
+
+        {{ valorInventario | currency:'MXN' }}
+
+      </h1>
+
+    </mat-card>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- GRÁFICA -->
+  <!-- ========================= -->
+
+  <div class="graficas-dashboard">
+
+    <mat-card class="grafica-card">
+
+      <mat-card-header>
+
+        <mat-card-title>
+
+          Productos por categoría
+
+        </mat-card-title>
+
+        <mat-card-subtitle>
+
+          Distribución de productos registrados
+
+        </mat-card-subtitle>
+
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <div class="grafica-container">
+
+          <canvas
+            baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            type="bar">
+
+          </canvas>
+
+        </div>
+
+      </mat-card-content>
+
+    </mat-card>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- ACCESOS RÁPIDOS -->
+  <!-- ========================= -->
+
+  <div class="menu-grid">
+
+    <mat-card
+      class="menu-card"
+      routerLink="/productos">
+
+      <mat-icon>
+        inventory_2
+      </mat-icon>
+
+      <h3>
+        Productos
+      </h3>
+
+      <p>
+        Administrar productos e inventario
+      </p>
+
+    </mat-card>
+
+
+    <mat-card
+      class="menu-card"
+      routerLink="/categorias">
+
+      <mat-icon>
+        category
+      </mat-icon>
+
+      <h3>
+        Categorías
+      </h3>
+
+      <p>
+        Gestionar categorías
+      </p>
+
+    </mat-card>
+
+
+    <mat-card
+      class="menu-card"
+      routerLink="/clientes">
+
+      <mat-icon>
+        people
+      </mat-icon>
+
+      <h3>
+        Clientes
+      </h3>
+
+      <p>
+        Administrar clientes
+      </p>
+
+    </mat-card>
+
+
+    <mat-card
+      class="menu-card"
+      routerLink="/ventas">
+
+      <mat-icon>
+        point_of_sale
+      </mat-icon>
+
+      <h3>
+        Ventas
+      </h3>
+
+      <p>
+        Gestión de ventas e historial
+      </p>
+
+    </mat-card>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- IA -->
+  <!-- ========================= -->
+
+  <mat-card>
+
+    <mat-card-header>
+
+      <mat-card-title>
+
+        Asistente Inteligente
+
+      </mat-card-title>
+
+      <mat-card-subtitle>
+
+        Consulta información del negocio utilizando IA
+
+      </mat-card-subtitle>
+
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <mat-form-field appearance="outline">
+
+        <mat-label>
+
+          Escribe una consulta
+
+        </mat-label>
 
         <input
           matInput
           [(ngModel)]="pregunta"
           (keyup.enter)="enviarPregunta()"
-          placeholder="Ej. ¿Qué productos tienen poco stock?, ¿Quién es mi mejor cliente?, Dame un resumen del negocio"
-        />
+          placeholder="Ej. ¿Qué productos tienen poco stock?">
+
       </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="enviarPregunta()" [disabled]="cargando">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="enviarPregunta()"
+        [disabled]="cargando">
+
         Consultar IA
+
       </button>
 
       @if (cargando) {
-        <div style="margin-top: 20px; display: flex; align-items: center; gap: 12px">
+
+        <div
+          style="margin-top:20px;
+               display:flex;
+               align-items:center;
+               gap:12px;">
+
           <mat-spinner diameter="30"></mat-spinner>
 
-          <span> La IA está analizando la información del negocio... </span>
+          <span>
+
+          La IA está analizando la información...
+
+        </span>
+
         </div>
+
       }
 
       @if (respuestaIA) {
+
         <div
-          style="
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            background: #f5f5f5;
-            white-space: pre-line;
-          "
-        >
-          <strong> Respuesta de la IA: </strong>
+          style="margin-top:20px;
+               padding:20px;
+               border-radius:16px;
+               background:#f5f7fa;">
+
+          <strong>
+
+            Respuesta
+
+          </strong>
 
           <markdown [data]="respuestaIA"></markdown>
+
         </div>
+
       }
+
     </mat-card-content>
-  </mat-card>
-<!-- ========================= -->
-<!-- TARJETAS DE RESUMEN -->
-<!-- ========================= -->
 
-<div class="cards-dashboard">
-  <mat-card class="card-resumen">
-    <h3>Productos</h3>
-
-    <h1>{{ totalProductos }}</h1>
   </mat-card>
 
-  <mat-card class="card-resumen">
-    <h3>Categorías</h3>
-
-    <h1>{{ totalCategorias }}</h1>
-  </mat-card>
-
-  <mat-card class="card-resumen">
-    <h3>Activos</h3>
-
-    <h1>{{ productosActivos }}</h1>
-  </mat-card>
-
-  <mat-card class="card-resumen">
-    <h3>Valor Inventario</h3>
-
-    <h1>{{ valorInventario | currency: 'MXN' }}</h1>
-  </mat-card>
-</div>
-
-<!-- ========================= -->
-<!-- GRÁFICA -->
-<!-- ========================= -->
-
-<div class="graficas-dashboard">
-  <mat-card class="grafica-card">
-    <mat-card-header>
-      <mat-card-title> Productos por categoría </mat-card-title>
-
-      <mat-card-subtitle>
-        Distribución de productos registrados en el inventario
-      </mat-card-subtitle>
-    </mat-card-header>
-
-    <mat-card-content>
-      <div class="grafica-container">
-        <canvas baseChart [data]="barChartData" [options]="barChartOptions" type="bar"> </canvas>
-      </div>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-  <app-productos
-    (resumenActualizado)="actualizarResumen($event)">
-  </app-productos>
-  <app-categorias></app-categorias>
-  <app-clientes></app-clientes>
 </div>

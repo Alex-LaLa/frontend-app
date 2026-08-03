@@ -1,0 +1,166 @@
+<h2 mat-dialog-title>
+
+  Registrar Venta
+
+</h2>
+
+<mat-dialog-content>
+
+  <!-- ========================= -->
+  <!-- Cliente -->
+  <!-- ========================= -->
+
+  <mat-form-field appearance="outline">
+
+    <mat-label>Cliente</mat-label>
+
+    <mat-select [(ngModel)]="venta.clienteId">
+
+      <mat-option
+        *ngFor="let cliente of clientes"
+        [value]="cliente.id">
+
+        {{ cliente.nombreCompleto }}
+
+      </mat-option>
+
+    </mat-select>
+
+  </mat-form-field>
+
+
+  <!-- ========================= -->
+  <!-- Productos -->
+  <!-- ========================= -->
+
+  <div
+    class="producto-item"
+    *ngFor="let item of venta.productos; let i = index">
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Producto</mat-label>
+
+      <mat-select [(ngModel)]="item.productoId">
+
+        <mat-option
+          *ngFor="let producto of productos"
+          [value]="producto.id">
+
+          {{ producto.nombre }}
+
+        </mat-option>
+
+      </mat-select>
+
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline">
+
+      <mat-label>Cantidad</mat-label>
+
+      <input
+        matInput
+        type="number"
+        min="1"
+        [(ngModel)]="item.cantidad">
+
+    </mat-form-field>
+
+
+    <div class="info-producto">
+
+      <span>
+
+        <strong>Precio:</strong>
+
+        {{ obtenerPrecio(item.productoId ?? 0) | currency:'MXN' }}
+
+      </span>
+
+      <span>
+
+        <strong>Subtotal:</strong>
+
+        {{ obtenerPrecio(item.productoId ?? 0) * item.cantidad | currency:'MXN' }}
+
+      </span>
+
+    </div>
+
+
+    <div class="acciones-producto">
+
+      <button
+        mat-icon-button
+        color="warn"
+        *ngIf="venta.productos.length > 1"
+        (click)="eliminarProducto(i)">
+
+        <mat-icon>
+
+          delete
+
+        </mat-icon>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
+  <!-- Agregar producto -->
+  <!-- ========================= -->
+
+  <button
+    class="btn-agregar"
+    mat-stroked-button
+    color="primary"
+    (click)="agregarProducto()">
+
+    <mat-icon>
+
+      add
+
+    </mat-icon>
+
+    Agregar producto
+
+  </button>
+
+
+  <div class="total">
+
+    TOTAL
+
+    <br>
+
+    {{ obtenerTotal() | currency:'MXN' }}
+
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+
+  <button
+    mat-button
+    (click)="cancelar()">
+
+    Cancelar
+
+  </button>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="guardar()">
+
+    Registrar Venta
+
+  </button>
+
+</mat-dialog-actions>

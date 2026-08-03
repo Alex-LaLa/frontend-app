@@ -1,8 +1,7 @@
 import { ChangeDetectorRef, Component} from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { CategoriasComponent } from '../../components/categorias/categorias';
+import { Router, RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,9 +14,7 @@ import { MarkdownComponent } from 'ngx-markdown';
 
 import { AiService } from '../../services/ai';
 import { AuthService } from '../../services/auth';
-
-import { ProductosComponent } from '../../components/productos/productos';
-import { ClientesComponent } from '../../components/clientes/clientes';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard',
@@ -33,9 +30,8 @@ import { ClientesComponent } from '../../components/clientes/clientes';
     BaseChartDirective,
     MarkdownComponent,
     CurrencyPipe,
-    ProductosComponent,
-    CategoriasComponent,
-    ClientesComponent,
+    MatIcon,
+    RouterLink,
   ],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css',

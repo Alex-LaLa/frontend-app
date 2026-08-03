@@ -1,0 +1,81 @@
+/* ========================== */
+
+mat-dialog-content{
+
+  min-width:750px;
+
+  max-height:75vh;
+
+  overflow:auto;
+
+}
+
+/* ========================== */
+
+.info-venta{
+
+  margin-bottom:20px;
+
+  padding:18px;
+
+  border-radius:16px;
+
+  background:#f5f7fa;
+
+}
+
+.info-venta p{
+
+  margin:8px 0;
+
+}
+
+/* ========================== */
+
+table{
+
+  width:100%;
+
+}
+
+th{
+
+  font-weight:700;
+
+}
+
+tr:hover{
+
+  background:#f7f7f7;
+
+}
+
+/* ========================== */
+
+.total-final{
+
+  margin-top:20px;
+
+  padding:16px;
+
+  text-align:right;
+
+  border-radius:16px;
+
+  background:#e8f5e9;
+
+  color:#2e7d32;
+
+  font-size:1.3rem;
+
+  font-weight:bold;
+
+}
+
+/* ========================== */
+
+mat-dialog-actions{
+
+  padding:20px;
+
+}
