@@ -319,7 +319,6 @@ export class ProductosComponent implements OnInit, AfterViewInit {
       },
     });
   }
-
   eliminarProducto(producto: any): void {
     const dialogRef = this.dialog.open(ConfirmDialog, {
       width: '400px',
@@ -335,23 +334,7 @@ export class ProductosComponent implements OnInit, AfterViewInit {
         return;
       }
 
-      const inventario = this.inventarios.find((i: any) => i.producto?.id === producto.id);
-
-      if (inventario) {
-        this.inventarioService.eliminarInventario(inventario.id).subscribe({
-          next: () => {
-            this.eliminarProductoApi(producto.id);
-          },
-
-          error: (err) => {
-            console.error('Error al eliminar inventario:', err);
-
-            alert('No se pudo eliminar el inventario del producto.');
-          },
-        });
-      } else {
-        this.eliminarProductoApi(producto.id);
-      }
+      this.eliminarProductoApi(producto.id);
     });
   }
 
