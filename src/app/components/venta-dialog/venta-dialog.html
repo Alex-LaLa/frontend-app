@@ -1,10 +1,10 @@
 <h2 mat-dialog-title>
-
   Registrar Venta
-
 </h2>
 
+
 <mat-dialog-content>
+
 
   <!-- ========================= -->
   <!-- Cliente -->
@@ -14,7 +14,9 @@
 
     <mat-label>Cliente</mat-label>
 
-    <mat-select [(ngModel)]="venta.clienteId">
+    <mat-select
+      [(ngModel)]="venta.clienteId"
+      required>
 
       <mat-option
         *ngFor="let cliente of clientes"
@@ -26,7 +28,12 @@
 
     </mat-select>
 
+    <mat-error *ngIf="venta.clienteId === null">
+      Selecciona un cliente
+    </mat-error>
+
   </mat-form-field>
+
 
 
   <!-- ========================= -->
@@ -37,11 +44,14 @@
     class="producto-item"
     *ngFor="let item of venta.productos; let i = index">
 
+
     <mat-form-field appearance="outline">
 
       <mat-label>Producto</mat-label>
 
-      <mat-select [(ngModel)]="item.productoId">
+      <mat-select
+        [(ngModel)]="item.productoId"
+        required>
 
         <mat-option
           *ngFor="let producto of productos"
@@ -53,7 +63,12 @@
 
       </mat-select>
 
+      <mat-error *ngIf="item.productoId === null">
+        Selecciona un producto
+      </mat-error>
+
     </mat-form-field>
+
 
 
     <mat-form-field appearance="outline">
@@ -64,9 +79,15 @@
         matInput
         type="number"
         min="1"
-        [(ngModel)]="item.cantidad">
+        [(ngModel)]="item.cantidad"
+        required>
+
+      <mat-error *ngIf="item.cantidad <= 0">
+        Cantidad inválida
+      </mat-error>
 
     </mat-form-field>
+
 
 
     <div class="info-producto">
@@ -75,22 +96,25 @@
 
         <strong>Precio:</strong>
 
-        {{ obtenerPrecio(item.productoId ?? 0) | currency:'MXN' }}
+        {{ obtenerPrecio(item.productoId) | currency:'MXN' }}
 
       </span>
+
 
       <span>
 
         <strong>Subtotal:</strong>
 
-        {{ obtenerPrecio(item.productoId ?? 0) * item.cantidad | currency:'MXN' }}
+        {{ obtenerPrecio(item.productoId) * item.cantidad | currency:'MXN' }}
 
       </span>
 
     </div>
 
 
+
     <div class="acciones-producto">
+
 
       <button
         mat-icon-button
@@ -99,16 +123,17 @@
         (click)="eliminarProducto(i)">
 
         <mat-icon>
-
           delete
-
         </mat-icon>
 
       </button>
 
+
     </div>
 
+
   </div>
+
 
 
   <!-- ========================= -->
@@ -122,14 +147,13 @@
     (click)="agregarProducto()">
 
     <mat-icon>
-
       add
-
     </mat-icon>
 
     Agregar producto
 
   </button>
+
 
 
   <div class="total">
@@ -142,9 +166,13 @@
 
   </div>
 
+
 </mat-dialog-content>
 
+
+
 <mat-dialog-actions align="end">
+
 
   <button
     mat-button
@@ -154,6 +182,7 @@
 
   </button>
 
+
   <button
     mat-raised-button
     color="primary"
@@ -162,5 +191,6 @@
     Registrar Venta
 
   </button>
+
 
 </mat-dialog-actions>

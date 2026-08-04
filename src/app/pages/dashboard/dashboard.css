@@ -346,3 +346,70 @@ button mat-icon{
   }
 
 }
+.toolbar {
+
+  height: 70px;
+
+  padding: 0 30px;
+
+  border-radius: 0 0 20px 20px;
+
+  background: rgba(255,255,255,.75);
+
+  backdrop-filter: blur(12px);
+
+  -webkit-backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255,255,255,.5);
+
+  color: #333;
+
+}
+
+
+.brand {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+}
+
+
+.brand mat-icon {
+
+  font-size: 32px;
+
+  width: 32px;
+
+  height: 32px;
+
+}
+
+
+.spacer {
+
+  flex: 1 1 auto;
+
+}
+
+
+.logout {
+
+  border-radius: 20px;
+
+  padding: 0 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}

@@ -9,6 +9,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ChangeDetectorRef } from '@angular/core';
 import { CategoriaService } from '../../services/categoria';
 import { CategoriaDialog } from '../categoria-dialog/categoria-dialog';
+import { Categoria } from '../../models/categoria';
+import { ConfirmDialog } from '../confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-categorias',
@@ -25,9 +27,9 @@ import { CategoriaDialog } from '../categoria-dialog/categoria-dialog';
   styleUrl: './categorias.css',
 })
 export class CategoriasComponent implements OnInit {
-  categorias: any[] = [];
+  categorias: Categoria[] = [];
 
-  columnas: string[] = ['id', 'nombre', 'acciones','activo'];
+  columnas: string[] = ['id', 'nombre', 'acciones', 'activo'];
 
   constructor(
     private categoriaService: CategoriaService,
@@ -87,14 +89,23 @@ export class CategoriasComponent implements OnInit {
   }
 
   eliminarCategoria(categoria: any): void {
-    const confirmar = confirm(`¿Desea eliminar la categoría "${categoria.nombre}"?`);
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '400px',
 
-    if (!confirmar) {
-      return;
-    }
+      data: {
+        tipo: 'categoría',
+        nombre: categoria.nombre,
+      },
+    });
 
-    this.categoriaService.eliminarCategoria(categoria.id).subscribe(() => {
-      this.cargarCategorias();
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (!resultado) {
+        return;
+      }
+
+      this.categoriaService.eliminarCategoria(categoria.id).subscribe(() => {
+        this.cargarCategorias();
+      });
     });
   }
 }

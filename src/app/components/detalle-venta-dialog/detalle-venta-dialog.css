@@ -1,81 +1,161 @@
-/* ========================== */
+.titulo {
 
-mat-dialog-content{
-
-  min-width:750px;
-
-  max-height:75vh;
-
-  overflow:auto;
-
-}
-
-/* ========================== */
-
-.info-venta{
-
-  margin-bottom:20px;
-
-  padding:18px;
-
-  border-radius:16px;
-
-  background:#f5f7fa;
-
-}
-
-.info-venta p{
-
-  margin:8px 0;
-
-}
-
-/* ========================== */
-
-table{
-
-  width:100%;
-
-}
-
-th{
+  font-size:24px;
 
   font-weight:700;
 
 }
 
-tr:hover{
 
-  background:#f7f7f7;
 
-}
+.info-venta {
 
-/* ========================== */
+  display:grid;
 
-.total-final{
+  grid-template-columns: repeat(2,1fr);
 
-  margin-top:20px;
+  gap:15px;
 
-  padding:16px;
-
-  text-align:right;
-
-  border-radius:16px;
-
-  background:#e8f5e9;
-
-  color:#2e7d32;
-
-  font-size:1.3rem;
-
-  font-weight:bold;
+  margin-bottom:25px;
 
 }
 
-/* ========================== */
 
-mat-dialog-actions{
 
-  padding:20px;
+.dato {
+
+  padding:15px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.7);
+
+  border:1px solid rgba(0,0,0,.08);
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:5px;
+
+}
+
+
+
+.dato strong {
+
+  font-size:13px;
+
+  opacity:.7;
+
+}
+
+
+
+.total span {
+
+  font-size:22px;
+
+  font-weight:700;
+
+}
+
+
+
+.subtitulo {
+
+  margin-top:15px;
+
+  font-size:18px;
+
+  font-weight:600;
+
+}
+
+
+
+.tabla-container {
+
+  overflow:auto;
+
+  border-radius:15px;
+
+}
+
+
+
+table {
+
+  width:100%;
+
+}
+
+
+
+th {
+
+  font-weight:700;
+
+}
+
+
+
+td {
+
+  padding:14px;
+
+}
+
+
+
+tr.mat-mdc-row:hover {
+
+  background:rgba(0,0,0,.04);
+
+}
+
+
+
+.estado {
+
+  width:max-content;
+
+  padding:6px 14px;
+
+  border-radius:20px;
+
+  font-size:12px;
+
+  font-weight:600;
+
+}
+
+
+
+.completada {
+
+  background:#d1fae5;
+
+  color:#047857;
+
+}
+
+
+
+.pendiente {
+
+  background:#fef3c7;
+
+  color:#b45309;
+
+}
+
+
+
+.cancelada {
+
+  background:#fee2e2;
+
+  color:#b91c1c;
 
 }

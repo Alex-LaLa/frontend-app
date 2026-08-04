@@ -14,6 +14,7 @@ import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/fo
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { ClienteService } from '../../services/cliente';
 import { ClienteDialog } from '../cliente-dialog/cliente-dialog';
+import { ConfirmDialog } from '../confirm-dialog/confirm-dialog';
 
 @Component({
   selector: 'app-clientes',
@@ -108,10 +109,23 @@ export class ClientesComponent implements OnInit {
   }
 
   eliminarCliente(cliente: any): void {
-    if (!confirm(`¿Eliminar al cliente "${cliente.nombreCompleto}"?`)) {
-      return;
-    }
+    const dialogRef = this.dialog.open(ConfirmDialog, {
+      width: '400px',
 
-    this.clienteService.eliminarCliente(cliente.id).subscribe(() => this.cargarClientes());
+      data: {
+        tipo: 'cliente',
+        nombre: cliente.nombreCompleto,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((resultado) => {
+      if (!resultado) {
+        return;
+      }
+
+      this.clienteService.eliminarCliente(cliente.id).subscribe(() => {
+        this.cargarClientes();
+      });
+    });
   }
 }

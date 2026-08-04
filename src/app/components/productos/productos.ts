@@ -325,6 +325,7 @@ export class ProductosComponent implements OnInit, AfterViewInit {
       width: '400px',
 
       data: {
+        tipo: 'producto',
         nombre: producto.nombre,
       },
     });
@@ -336,7 +337,6 @@ export class ProductosComponent implements OnInit, AfterViewInit {
 
       const inventario = this.inventarios.find((i: any) => i.producto?.id === producto.id);
 
-      // Primero eliminar inventario
       if (inventario) {
         this.inventarioService.eliminarInventario(inventario.id).subscribe({
           next: () => {
@@ -350,7 +350,6 @@ export class ProductosComponent implements OnInit, AfterViewInit {
           },
         });
       } else {
-        // Si no tiene inventario, eliminar directamente
         this.eliminarProductoApi(producto.id);
       }
     });

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {CommonModule} from '@angular/common';
+
 import { environment } from '../../environments/environment';
+import { Producto } from '../models/producto';
 
 @Injectable({
   providedIn: 'root',
@@ -12,26 +13,27 @@ export class ProductoService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerProductos(): Observable<any[]> {
-    return this.http.get<any[]>(this.api);
+  obtenerProductos(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(this.api);
   }
 
-  obtenerProducto(id: number): Observable<any> {
-    return this.http.get<any>(`${this.api}/${id}`);
+  obtenerProducto(id: number): Observable<Producto> {
+    return this.http.get<Producto>(`${this.api}/${id}`);
   }
 
-  crearProducto(producto: any): Observable<any> {
-    return this.http.post<any>(this.api, producto);
+  crearProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(this.api, producto);
   }
 
-  actualizarProducto(id: number, producto: any): Observable<any> {
-    return this.http.put<any>(`${this.api}/${id}`, producto);
+  actualizarProducto(id: number, producto: Producto): Observable<Producto> {
+    return this.http.put<Producto>(`${this.api}/${id}`, producto);
   }
 
-  eliminarProducto(id: number): Observable<any> {
-    return this.http.delete(`${this.api}/${id}`);
+  eliminarProducto(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.api}/${id}`);
   }
-  obtenerProductosDisponibles(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/disponibles`);
+
+  obtenerProductosDisponibles(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.api}/disponibles`);
   }
 }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
 import { environment } from '../../environments/environment';
+import { Venta } from '../models/venta';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +13,9 @@ export class VentaService {
 
   constructor(private http: HttpClient) {}
 
-  registrarVenta(venta: any): Observable<any> {
-    return this.http.post(this.api, venta);
+  registrarVenta(venta: Venta): Observable<string> {
+    return this.http.post(this.api, venta, {
+      responseType: 'text',
+    });
   }
 }

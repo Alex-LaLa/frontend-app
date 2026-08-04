@@ -1,28 +1,40 @@
-<mat-card>
+<div class="ventas-container">
 
-  <mat-card-header>
 
-    <mat-card-title>
-      Registrar Venta
-    </mat-card-title>
+  <mat-card>
 
-    <mat-card-subtitle>
-      Salida de inventario
-    </mat-card-subtitle>
+    <mat-card-header>
 
-  </mat-card-header>
+      <mat-card-title>
+        Registrar Venta
+      </mat-card-title>
 
-  <mat-card-content>
+      <mat-card-subtitle>
+        Salida de productos e inventario
+      </mat-card-subtitle>
 
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="abrirDialogoVenta()">
+    </mat-card-header>
 
-      Registrar Venta
 
-    </button>
+    <mat-card-content>
 
-  </mat-card-content>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="abrirDialogoVenta()">
 
-</mat-card>
+        Registrar Venta
+
+      </button>
+
+    </mat-card-content>
+
+
+  </mat-card>
+
+
+
+  <app-historial-ventas #historial></app-historial-ventas>
+
+
+</div>

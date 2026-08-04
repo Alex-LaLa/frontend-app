@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="historial-card">
 
   <mat-card-header>
 
@@ -6,92 +6,146 @@
       Historial de Ventas
     </mat-card-title>
 
+    <mat-card-subtitle>
+      Consulta todas las ventas registradas
+    </mat-card-subtitle>
+
   </mat-card-header>
+
 
   <mat-card-content>
 
-    <table mat-table [dataSource]="ordenes">
 
-      <ng-container matColumnDef="id">
+    <div class="tabla-container">
 
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-
-        <td mat-cell *matCellDef="let venta">
-          {{venta.id}}
-        </td>
-
-      </ng-container>
+      <table mat-table [dataSource]="ordenes">
 
 
-      <ng-container matColumnDef="cliente">
+        <ng-container matColumnDef="id">
 
-        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+          <th mat-header-cell *matHeaderCellDef>
+            ID
+          </th>
 
-        <td mat-cell *matCellDef="let venta">
-          {{venta.cliente.nombreCompleto}}
-        </td>
+          <td mat-cell *matCellDef="let venta">
+            #{{venta.id}}
+          </td>
 
-      </ng-container>
-
-
-      <ng-container matColumnDef="fecha">
-
-        <th mat-header-cell *matHeaderCellDef>Fecha</th>
-
-        <td mat-cell *matCellDef="let venta">
-          {{venta.fechaOrden | date:'short'}}
-        </td>
-
-      </ng-container>
+        </ng-container>
 
 
-      <ng-container matColumnDef="estado">
 
-        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <ng-container matColumnDef="cliente">
 
-        <td mat-cell *matCellDef="let venta">
-          {{venta.estado}}
-        </td>
+          <th mat-header-cell *matHeaderCellDef>
+            Cliente
+          </th>
 
-      </ng-container>
+          <td mat-cell *matCellDef="let venta">
+            {{venta.cliente?.nombreCompleto}}
+          </td>
 
-
-      <ng-container matColumnDef="total">
-
-        <th mat-header-cell *matHeaderCellDef>Total</th>
-
-        <td mat-cell *matCellDef="let venta">
-          {{venta.total | currency:'MXN'}}
-        </td>
-
-      </ng-container>
+        </ng-container>
 
 
-      <ng-container matColumnDef="acciones">
 
-        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <ng-container matColumnDef="fecha">
 
-        <td mat-cell *matCellDef="let venta">
+          <th mat-header-cell *matHeaderCellDef>
+            Fecha
+          </th>
 
-          <button
-            mat-icon-button
-            color="primary"
-            (click)="verDetalle(venta)">
+          <td mat-cell *matCellDef="let venta">
+            {{venta.fechaOrden | date:'dd/MM/yyyy HH:mm'}}
+          </td>
 
-            <mat-icon>visibility</mat-icon>
+        </ng-container>
 
-          </button>
 
-        </td>
 
-      </ng-container>
+        <ng-container matColumnDef="estado">
 
-      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+          <th mat-header-cell *matHeaderCellDef>
+            Estado
+          </th>
 
-      <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+          <td mat-cell *matCellDef="let venta">
 
-    </table>
+            <span
+              class="estado"
+              [ngClass]="venta.estado.toLowerCase()">
+
+              {{venta.estado}}
+
+            </span>
+
+          </td>
+
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="total">
+
+          <th mat-header-cell *matHeaderCellDef>
+            Total
+          </th>
+
+          <td mat-cell *matCellDef="let venta">
+
+            {{venta.total | currency:'MXN'}}
+
+          </td>
+
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="acciones">
+
+          <th mat-header-cell *matHeaderCellDef>
+            Acción
+          </th>
+
+
+          <td mat-cell *matCellDef="let venta">
+
+            <button
+              mat-icon-button
+              class="detalle-btn"
+              (click)="verDetalle(venta)">
+
+              <mat-icon>
+                visibility
+              </mat-icon>
+
+            </button>
+
+          </td>
+
+        </ng-container>
+
+
+
+        <tr
+          mat-header-row
+          *matHeaderRowDef="columnas">
+        </tr>
+
+
+        <tr
+          mat-row
+          class="fila"
+          *matRowDef="let row; columns: columnas">
+        </tr>
+
+
+      </table>
+
+    </div>
+
 
   </mat-card-content>
+
 
 </mat-card>

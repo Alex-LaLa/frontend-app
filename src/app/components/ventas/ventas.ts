@@ -1,21 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
+import { HistorialVentasComponent } from '../historial-ventas/historial-ventas';
 import { VentaDialog } from '../venta-dialog/venta-dialog';
 import { VentaService } from '../../services/venta';
+
+import { Venta } from '../../models/venta';
 
 @Component({
   selector: 'app-ventas',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatDialogModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, HistorialVentasComponent],
   templateUrl: './ventas.html',
   styleUrl: './ventas.css',
 })
 export class VentasComponent {
+  @ViewChild(HistorialVentasComponent)
+  historialComponent!: HistorialVentasComponent;
+
   constructor(
     private dialog: MatDialog,
     private ventaService: VentaService,
@@ -26,12 +32,18 @@ export class VentasComponent {
       width: '500px',
     });
 
-    dialogRef.afterClosed().subscribe((venta) => {
-      if (!venta) return;
+    dialogRef.afterClosed().subscribe((venta: Venta | undefined) => {
+      if (!venta) {
+        return;
+      }
 
       this.ventaService.registrarVenta(venta).subscribe({
-        next: () => {
-          alert('Venta registrada correctamente');
+        next: (mensaje) => {
+          alert(mensaje);
+
+          if (this.historialComponent) {
+            this.historialComponent.cargarOrdenes();
+          }
         },
 
         error: (err) => {
